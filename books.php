@@ -48,9 +48,9 @@
                     <div class="space-5"></div>
                     <form action="#">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter book name">
+                            <input type="text" class="form-control" placeholder="Enter book name" name="search_text">
                             <div class="input-group-btn">
-                                <button type="submit" class="btn btn-primary"><i class="icofont icofont-search-alt-2"></i></button>
+                                <a href="books.php?search_text=search_text"><button type="submit" class="btn btn-primary"><i class="icofont icofont-search-alt-2"></i></button><a>
                             </div>
                         </div>
                     </form>
@@ -87,6 +87,11 @@
 						{
 							$category_id=$_GET['category'];
 							$query="SELECT * FROM books WHERE category_id=$category_id";
+						}
+                        if(isset($_GET['search_text']))
+						{
+							$search_text=$_GET['search_text'];
+							$query="SELECT * FROM books WHERE name like '%$search_text%'";
 						}
 						
                         else
