@@ -1,34 +1,3 @@
-<!--for pagination-->
-<?php
-include 'includes/db.php';
-	$num_of_post=4;
-	if(isset($_GET['page'])){
-		$page_id=$_GET['page'];
-	}
-	else{
-		$page_id=1;
-	}
-
-    $all_post_query="SELECT * FROM books";
-     if(isset($_GET['category']))
-    {
-        $category_id=$_GET['category'];
-        $all_post_query="SELECT * FROM books WHERE category_id=$category_id";
-    }
-    if(isset($_GET['search_text']))
-	{
-        $search_text=$_GET['search_text'];
-        $all_post_query="SELECT * FROM books WHERE name like '%$search_text%'";
-    }
-						
-        
-
-    $all_post_run=mysqli_query($conn,$all_post_query);
-	$all_post=mysqli_num_rows($all_post_run);
-	$total_page=ceil($all_post/$num_of_post);
-	
-	$post_start_from=($page_id-1)*$num_of_post;
-?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
